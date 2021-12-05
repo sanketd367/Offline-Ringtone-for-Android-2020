@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Offline_Music_Player.iml" filepath="$PROJECT_DIR$/.idea/modules/Offline_Music_Player.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Offline_Music_Player.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Offline_Music_Player.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Offline_Ringtone_for_Android_2020.iml" filepath="$PROJECT_DIR$/.idea/modules/Offline_Ringtone_for_Android_2020.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Offline_Ringtone_for_Android_2020.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Offline_Ringtone_for_Android_2020.app.iml" />
     </modules>
   </component>
 </project>
