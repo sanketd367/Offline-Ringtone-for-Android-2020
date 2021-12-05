@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/privacy_policy"
+        android:icon="@drawable/ic_setting_privacy"
+        android:title="@string/toolbar_privacy"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/share_app"
+        android:icon="@drawable/ic_share"
+        android:title="@string/set_share"
+        app:showAsAction="always" />
+</menu>

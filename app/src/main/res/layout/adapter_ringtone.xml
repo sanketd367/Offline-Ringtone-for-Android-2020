@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeFull"
+    android:layout_width="fill_parent"
+    android:layout_height="70dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="2.5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="2.5dp"
+    android:animateLayoutChanges="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:weightSum="2">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_ring_item"
+        android:scaleType="fitXY" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/equalizer_view"
+            android:layout_toRightOf="@+id/relViewPlayButton"
+            android:fontFamily="@font/cardo_regular"
+            android:gravity="center_vertical"
+            android:text="@string/app_name"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textDirection="locale"
+            android:textSize="18dp" />
+
+        <es.claucookie.miniequalizerlibrary.EqualizerView
+            android:id="@+id/equalizer_view"
+            android:layout_width="@dimen/adapter_ringtone_equalizer_width"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginLeft="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginTop="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginEnd="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginRight="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginBottom="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_toLeftOf="@+id/btn_next"
+            app:animDuration="2500"
+            app:foregroundColor="@color/white"
+            android:visibility="gone"
+            />
+
+
+        <ImageView
+            android:id="@+id/equalizer_IV"
+            android:layout_toLeftOf="@+id/btn_next"
+            android:layout_width="@dimen/adapter_ringtone_equalizer_width"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginLeft="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginTop="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginEnd="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginRight="@dimen/adapter_ringtone_equalizer_margin"
+            android:layout_marginBottom="@dimen/adapter_ringtone_equalizer_margin"
+            android:src="@drawable/ic_music_equalizer" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_next"
+            android:layout_width="@dimen/adapter_ringtone_main_layout_height"
+            android:layout_height="@dimen/adapter_ringtone_main_layout_height"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:padding="15dp"
+            android:src="@drawable/ic_more" />
+
+        <RelativeLayout
+            android:id="@+id/relViewPlayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/adapter_ringtone_main_layout_height"
+                android:layout_height="@dimen/adapter_ringtone_main_layout_height"
+                android:layout_alignParentLeft="true"
+                android:padding="17dp"
+                android:src="@drawable/ic_music_item"
+                android:tint="@color/white"
+                android:weightSum="2" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_play"
+                android:layout_width="@dimen/adapter_ringtone_main_layout_height"
+                android:layout_height="@dimen/adapter_ringtone_main_layout_height"
+                android:layout_alignParentLeft="true"
+                android:padding="@dimen/adapter_ringtone_play_padding"
+                android:src="@drawable/ic_play_btn"
+                android:visibility="gone"
+                android:weightSum="2" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

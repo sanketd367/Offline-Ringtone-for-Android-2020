@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">iRingtone</string>
+
+
+    <string name="account_url">https://play.google.com/store/apps/developer?id=ACC+Name</string>
+
+
+    <string name="Ads_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="interstitialAdId">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="bannerAdId">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="nativeAdId">ca-app-pub-3940256099942544/2247696110</string>
+
+
+
+    <string name="disclaimer_msg">"All this app ringtone are for entertainment purpose only. All ringtone are collected from the Internet. If you believe in good faith that any material provided through the service infringes upon your copyright then please feel free to contact us, So that we can take action.
+
+Have enjoying day.
+Thank you."</string>
+    <string name="disclaimer_ok">OK</string>
+    <string name="disclaimer_title">Disclaimer</string>
+
+    <string name="home_more_apps">More apps</string>
+    <string name="info_set_alarm">  is updated as Alarm Tone</string>
+    <string name="info_set_notification">  is updated as Notification Tone</string>
+    <string name="info_set_ringtone">  is updated as Ringtone</string>
+
+
+    <string name="permission_msg">To set a Ringtone, Needs permission to modify system settings.</string>
+    <string name="permission_positive">Grant Permissions</string>
+    <string name="permission_title">Permission Required</string>
+    <string name="permission_toast">For setting ringtone or any needs to allow all the permission.</string>
+    <string name="rate_later">Later</string>
+    <string name="rate_msg">"Would you mind taking a moment to rate an app for current version ?
+
+Thanks for the support!"</string>
+    <string name="rate_ok">OK</string>
+    <string name="rate_title">Enjoying</string>
+    <string name="set_alarm">Alarm</string>
+    <string name="set_contact">Contact</string>
+    <string name="set_notification">SMS | Notification</string>
+    <string name="set_ringtone">Ringtone</string>
+    <string name="set_share">Share</string>
+    <string name="set_txt_set_As">Set As</string>
+    <string name="share_link">https://play.google.com/store/apps/details?id=</string>
+    <string name="share_text">Checkout amazing collection of ringtone in app called</string>
+    <string name="success_contact_ring">has been set to</string>
+    <string name="toolbar_privacy">Privacy</string>
+
+</resources>

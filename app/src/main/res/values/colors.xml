@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="cardview_dark_background">#ff424242</color>
+    <color name="cardview_light_background">#ffffffff</color>
+    <color name="cardview_shadow_end_color">#03000000</color>
+    <color name="cardview_shadow_start_color">#37000000</color>
+    <color name="colorAccent">#FB7A6F</color>
+    <color name="colorPrimary">#FB7A6F</color>
+    <color name="colorPrimaryDark">#FF4434</color>
+
+    <color name="backgroundColor">#1F2434</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+
+    <color name="error_color_material_dark">#ffff7043</color>
+    <color name="error_color_material_light">#ffff5722</color>
+
+    <color name="lightPrimary">#1f000000</color>
+
+    <color name="mtrl_btn_bg_color_disabled">#1f000000</color>
+    <color name="mtrl_btn_text_color_disabled">#61000000</color>
+    <color name="mtrl_btn_transparent_bg_color">#00ffffff</color>
+    <color name="mtrl_scrim_color">#52000000</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#6b000000</color>
+    <color name="mtrl_textinput_disabled_color">#1f000000</color>
+    <color name="mtrl_textinput_filled_box_default_background_color">#0a000000</color>
+    <color name="mtrl_textinput_hovered_box_stroke_color">#de000000</color>
+
+    <color name="setting_background">#33000000</color>
+
+</resources>
