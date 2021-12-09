@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bootstrap-fileupload">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Documentation/assets/js/bootstrap-fileupload.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
