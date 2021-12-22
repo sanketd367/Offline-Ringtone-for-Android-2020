@@ -1,4 +1,4 @@
-package com.yourbrandname.iphoneringtone;
+package com.invariablestudio.nokiaringtone;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

@@ -1,4 +1,4 @@
-package com.yourbrandname.iphoneringtone;
+package com.invariablestudio.nokiaringtone;
 
 public class GSRingtone {
     public String RAW_FILE_NAME;

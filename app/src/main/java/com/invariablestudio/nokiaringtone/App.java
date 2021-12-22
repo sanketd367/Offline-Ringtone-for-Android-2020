@@ -1,4 +1,4 @@
-package com.yourbrandname.iphoneringtone;
+package com.invariablestudio.nokiaringtone;
 
 import android.app.Application;
 

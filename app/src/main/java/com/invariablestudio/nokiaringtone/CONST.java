@@ -1,4 +1,4 @@
-package com.yourbrandname.iphoneringtone;
+package com.invariablestudio.nokiaringtone;
 
 import android.content.Context;
 import android.util.Log;
@@ -87,15 +87,15 @@ public class CONST {
             R.raw.ringtone58,
             R.raw.ringtone59,
             R.raw.ringtone60,
-            R.raw.ringtone61,
-            R.raw.ringtone62,
-            R.raw.ringtone63,
-            R.raw.ringtone64,
-            R.raw.ringtone65,
-            R.raw.ringtone66,
-            R.raw.ringtone67,
-            R.raw.ringtone68,
-            R.raw.ringtone69,
+//            R.raw.ringtone61,
+//            R.raw.ringtone62,
+//            R.raw.ringtone63,
+//            R.raw.ringtone64,
+//            R.raw.ringtone65,
+//            R.raw.ringtone66,
+//            R.raw.ringtone67,
+//            R.raw.ringtone68,
+//            R.raw.ringtone69,
     };
 
 

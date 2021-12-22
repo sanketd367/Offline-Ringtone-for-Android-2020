@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yourbrandname.iphoneringtone">
+    package="com.invariablestudio.nokiaringtone">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
@@ -16,7 +16,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.yourbrandname.iphoneringtone.App"
+        android:name="com.invariablestudio.nokiaringtone.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -48,7 +48,7 @@
 
 
         <activity
-            android:name="com.yourbrandname.iphoneringtone.ActivitySplash"
+            android:name="com.invariablestudio.nokiaringtone.ActivitySplash"
             android:configChanges="layoutDirection"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -57,16 +57,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.yourbrandname.iphoneringtone.ActivityHome"
+            android:name="com.invariablestudio.nokiaringtone.ActivityHome"
             android:configChanges="layoutDirection"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.yourbrandname.iphoneringtone.ActivityMain"
+            android:name="com.invariablestudio.nokiaringtone.ActivityMain"
             android:configChanges="layoutDirection"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.yourbrandname.iphoneringtone.ActivityMain" />
+                android:value="com.invariablestudio.nokiaringtone.ActivityMain" />
         </activity>
 
         

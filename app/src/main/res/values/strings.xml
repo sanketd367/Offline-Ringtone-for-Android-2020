@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">iRingtone</string>
+    <string name="app_name">Nokia Ringtone</string>
 
 
     <string name="account_url">https://play.google.com/store/apps/developer?id=ACC+Name</string>
