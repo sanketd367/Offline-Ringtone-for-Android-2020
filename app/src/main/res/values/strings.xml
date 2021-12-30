@@ -12,7 +12,6 @@
     <string name="nativeAdId">ca-app-pub-3940256099942544/2247696110</string>
 
 
-
     <string name="disclaimer_msg">"All this app ringtone are for entertainment purpose only. All ringtone are collected from the Internet. If you believe in good faith that any material provided through the service infringes upon your copyright then please feel free to contact us, So that we can take action.
 
 Have enjoying day.
@@ -46,5 +45,6 @@ Thanks for the support!"</string>
     <string name="share_text">Checkout amazing collection of ringtone in app called</string>
     <string name="success_contact_ring">has been set to</string>
     <string name="toolbar_privacy">Privacy</string>
+    <string name="db_drop">Drop</string>
 
 </resources>

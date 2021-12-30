@@ -93,8 +93,8 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/jcplayerView"
         android:layout_below="@+id/adContainer"
-        android:overScrollMode="always"
-        tools:listitem="@layout/adapter_ringtone" />
+        android:overScrollMode="always"/>
+
 
     <ImageView
         android:id="@+id/bg_shadow_IV"

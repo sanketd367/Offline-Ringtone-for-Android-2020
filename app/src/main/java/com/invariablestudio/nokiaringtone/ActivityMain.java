@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class ActivityMain extends AppCompatActivity implements JcPlayerManagerListener {
 
     public static InterstitialAd interstitialAd;
-    public static AdapterRingtone dialogRecyclerView;
+    public static AdapterRingtone1 dialogRecyclerView;
     public static int currentPlayItem = -1;
     static ActivityMain activityMainThis;
     public RecyclerView recyclerview;
@@ -84,28 +84,6 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
         }
         builder.create().show();
     }
-    /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_share, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        int itemId = menuItem.getItemId();
-        if (itemId == 16908332) {
-            onBackPressed();
-            return true;
-        } else if (itemId == R.id.privacy_policy) {
-            privacyDialog();
-            return true;
-        } else if (itemId != R.id.share_app) {
-            return super.onOptionsItemSelected(menuItem);
-        } else {
-            shareApp(this);
-            return true;
-        }
-    }*/
 
     public static void openDialogForPermission() {
         showDialog(activityMainThis, activityMainThis.getResources().getString(R.string.permission_title), activityMainThis.getResources().getString(R.string.permission_msg), activityMainThis.getResources().getString(R.string.permission_positive), new DialogInterface.OnClickListener() {
@@ -125,17 +103,6 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
         setContentView((int) R.layout.main);
         CONST.PACKAGE_NAME = getApplication().getPackageName();
         activityMainThis = this;
-      /*  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            //toolbar.setTitle((CharSequence) getString(R.string.app_name));
-            toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_toolbar_back));
-            toolbar.setNavigationOnClickListener(new OnClickListener() {
-                public void onClick(View view) {
-                    ActivityMain.this.onBackPressed();
-                }
-            });
-            setSupportActionBar(toolbar);
-        }*/
         this.bannerAdView = new AdView(this);
         bannerAdView.setAdSize(AdSize.BANNER);
         bannerAdView.setAdUnitId(getString(R.string.bannerAdId));
@@ -159,7 +126,6 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
             }
         });
 
-
         interstitialAd = new InterstitialAd(this);
 
         interstitialAd.setAdUnitId(getString(R.string.interstitialAdId));
@@ -178,10 +144,10 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
 
         this.recyclerview = (RecyclerView) findViewById(R.id.recyclerView);
         this.recyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        this.dialogRecyclerView = new AdapterRingtone(this, CONST.getRingtone(this));
+        this.dialogRecyclerView = new AdapterRingtone1(ActivityMain.this, CONST.getRingtone(this));
 
 
-        dialogRecyclerView.setOnItemClickListener(new AdapterRingtone.OnItemClickListener() {
+        dialogRecyclerView.setOnItemClickListener(new AdapterRingtone1.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
 

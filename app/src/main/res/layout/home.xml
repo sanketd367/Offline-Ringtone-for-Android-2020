@@ -176,7 +176,7 @@
                         android:layout_centerHorizontal="true"
                         android:fontFamily="@font/cardo_bold"
                         android:minHeight="30dp"
-                        android:text="@string/home_more_apps"
+                        android:text="Favourite"
                         android:textColor="@color/white"
                         android:textSize="20dp" />
                 </RelativeLayout>

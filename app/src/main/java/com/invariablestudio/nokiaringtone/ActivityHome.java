@@ -142,11 +142,7 @@ public class ActivityHome extends AppCompatActivity {
         });
         ((RelativeLayout) findViewById(R.id.goMain2)).setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                try {
-                    ActivityHome.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse(ActivityHome.this.getString(R.string.account_url))));
-                } catch (ActivityNotFoundException unused) {
-                    ActivityHome.this.startActivity(new Intent("android.intent.action.VIEW", Uri.parse(ActivityHome.this.getString(R.string.account_url))));
-                }
+                ActivityHome.this.startActivity(new Intent(ActivityHome.this.getApplication(), FavouriteActivity.class));
                 ActivityHome.this.overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
             }
         });

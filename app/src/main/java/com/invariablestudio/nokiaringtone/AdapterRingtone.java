@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -25,6 +26,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+
+import com.invariablestudio.nokiaringtone.Utils.DataBasHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,7 +75,7 @@ public class AdapterRingtone extends Adapter<ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder,int i) {
 
         //Log.e("onBindViewHolder", "" + i);
 
@@ -82,6 +85,13 @@ public class AdapterRingtone extends Adapter<ViewHolder> {
 
         gSRingtone = (GSRingtone) this.data.get(i);
         listViewHolder = (ListViewHolder) viewHolder;
+        if (new DataBasHelper(_context).retriveData().getCount()!=0) {
+            if (new DataBasHelper(_context).isAdded(gSRingtone.MY_NAME)) {
+                listViewHolder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
+            } else {
+                listViewHolder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24));
+            }
+        }
 
         listViewHolder.header_title.setText(gSRingtone.MY_NAME);
         /*listViewHolder.equalizer.animateBars();
@@ -131,6 +141,25 @@ public class AdapterRingtone extends Adapter<ViewHolder> {
 
             }
         };
+
+        listViewHolder.ivFav.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (new DataBasHelper(_context).isAdded(gSRingtone.MY_NAME)) {
+                    listViewHolder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24));
+                    new DataBasHelper(_context).deleteData(gSRingtone.MY_NAME);
+                    Toast.makeText(_context, "Remove to Favourite", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    listViewHolder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
+                    new DataBasHelper(_context).InsertData(gSRingtone.SHOW_FILENAME,gSRingtone.RAW_FILE_NAME,gSRingtone.MY_NAME);
+                    Toast.makeText(_context, "Added to Favourite", Toast.LENGTH_SHORT).show();
+
+                }
+                Toast.makeText(_context, ""+fullArrayList.get(i).MY_NAME, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         listViewHolder.relViewPlayButton.setOnClickListener(anonymousClass1);
         listViewHolder.btn_play.setOnClickListener(anonymousClass1);
         listViewHolder.btn_next.setOnClickListener(new OnClickListener() {
@@ -269,6 +298,7 @@ public class AdapterRingtone extends Adapter<ViewHolder> {
         EqualizerView equalizer;
         RelativeLayout relativeFull;
         AppCompatImageView btn_next;
+        ImageView ivFav;
         View itemView;
         private ImageView btn_play, equalizer_IV;
         private TextView header_title;
@@ -283,6 +313,7 @@ public class AdapterRingtone extends Adapter<ViewHolder> {
             this.relViewPlayButton = (RelativeLayout) view.findViewById(R.id.relViewPlayButton);
             this.btn_play = (ImageView) view.findViewById(R.id.btn_play);
             this.equalizer_IV = (ImageView) view.findViewById(R.id.equalizer_IV);
+            this.ivFav = (ImageView) view.findViewById(R.id.ivFav);
             this.equalizer = (EqualizerView) view.findViewById(R.id.equalizer_view);
         }
     }

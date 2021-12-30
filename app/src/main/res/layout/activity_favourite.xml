@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.ToolBarTheme"
+            app:subtitleTextColor="@android:color/white"
+            app:title="Select Ringtone"
+            app:titleTextColor="@android:color/white" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/topLay"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/backgroundColor">
+
+        <ImageView
+            android:id="@+id/back_bt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_toolbar_back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/i_bt"
+            android:layout_toRightOf="@+id/back_bt"
+            android:fontFamily="@font/cardo_bold"
+            android:gravity="center"
+            android:text="Favourite Ringtone"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+        <ImageView
+            android:id="@+id/i_bt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/share_bt"
+            android:padding="3dp"
+            android:src="@drawable/ic_setting_privacy" />
+
+        <ImageView
+            android:id="@+id/share_bt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_share" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/adContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topLay"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="invisible" />
+    <TextView
+        android:id="@+id/tv_nodata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No data found.."
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:letterSpacing="0.05"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_player"
+        android:layout_below="@+id/adContainer"
+        android:overScrollMode="always"
+        tools:listitem="@layout/adapter_ringtone" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_player"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/main_bottom_shadow_bg"
+        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/adContainer">
+
+    <com.example.jean.jcplayer.view.JcPlayerView
+        android:id="@+id/jcplayerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:outlineAmbientShadowColor="@color/white"
+        android:outlineSpotShadowColor="@color/white"
+        ads:next_icon_color="@color/white"
+        ads:pause_icon_color="@color/white"
+        ads:play_icon_color="@color/white"
+        ads:previous_icon_color="@color/white"
+        ads:progress_color="@color/white"
+        ads:random_icon_color="@color/white"
+        ads:repeat_icon_color="@color/white"
+        ads:repeat_one_icon_color="@color/white"
+        ads:seek_bar_color="@color/white"
+        ads:text_audio_current_duration_color="@color/white"
+        ads:text_audio_duration_color="@color/white"
+        ads:text_audio_title_color="@color/white" />
+    </RelativeLayout>
+    <!-- <com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout
+         android:id="@+id/bottomLay"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         ads:top_left_corner_radius="25dp"
+         ads:top_right_corner_radius="25dp"
+         android:orientation="vertical"
+         android:layout_above="@+id/adContainer"
+         android:paddingTop="10dp"
+         android:background="@android:color/transparent"
+         >
+
+             <com.example.jean.jcplayer.view.JcPlayerView
+                 android:id="@+id/jcplayerView"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:outlineAmbientShadowColor="@color/white"
+                 android:outlineSpotShadowColor="@color/white"
+                 ads:next_icon_color="@color/white"
+                 ads:pause_icon_color="@color/white"
+                 ads:play_icon_color="@color/white"
+                 ads:previous_icon_color="@color/white"
+                 ads:progress_color="@color/white"
+                 ads:random_icon_color="@color/white"
+                 ads:repeat_icon_color="@color/white"
+                 ads:repeat_one_icon_color="@color/white"
+                 ads:seek_bar_color="@color/white"
+                 ads:text_audio_current_duration_color="@color/white"
+                 ads:text_audio_duration_color="@color/white"
+                 ads:text_audio_title_color="@color/white" />
+
+     </com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout>-->
+
+
+</RelativeLayout>
