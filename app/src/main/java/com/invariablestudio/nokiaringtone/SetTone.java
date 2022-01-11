@@ -31,8 +31,11 @@ public class SetTone extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... strArr) {
 
+
+        int id = _context.getResources().getIdentifier(_context.getPackageName()+":raw/"+CONST.SELECTED_RAW_FILE_NAME, null, null);
+        Log.i(TAG, "doInBackground: "+id);
         byte[] buffer = null;
-        InputStream fIn = _context.getResources().openRawResource(CONST.rawArray[CONST.POS]);
+        InputStream fIn = _context.getResources().openRawResource(id);
         int size = 0;
 
         try {

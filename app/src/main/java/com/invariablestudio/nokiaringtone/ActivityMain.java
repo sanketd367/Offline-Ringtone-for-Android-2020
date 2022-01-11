@@ -32,9 +32,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.invariablestudio.nokiaringtone.Utils.DataBasHelper;
 
 import java.util.ArrayList;
-
 
 public class ActivityMain extends AppCompatActivity implements JcPlayerManagerListener {
 
@@ -50,6 +50,8 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
 
     ArrayList<JcAudio> fullArrayList = new ArrayList();
     ArrayList<JcAudio> singleArrayList = new ArrayList();
+
+
     private AdView bannerAdView;
 
     public static void shareApp(Context context) {
@@ -144,7 +146,7 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
 
         this.recyclerview = (RecyclerView) findViewById(R.id.recyclerView);
         this.recyclerview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        this.dialogRecyclerView = new AdapterRingtone1(ActivityMain.this, CONST.getRingtone(this));
+        this.dialogRecyclerView = new AdapterRingtone1(ActivityMain.this, new DataBasHelper(this).getAudio());
 
 
         dialogRecyclerView.setOnItemClickListener(new AdapterRingtone1.OnItemClickListener() {
@@ -157,9 +159,11 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
                 singleArrayList.add(fullArrayList.get(position));*/
 
                 //jcplayerView.initPlaylist(singleArrayList, ActivityMain.this);
-
-                jcplayerView.playAudio(jcplayerView.getMyPlaylist().get(currentPlayItem));
-
+                try {
+                    jcplayerView.playAudio(jcplayerView.getMyPlaylist().get(currentPlayItem));
+                } catch (IndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                }
                 int height = jcplayerView.getLayoutParams().height;
                 bg_shadow_IV.getLayoutParams().height = height;
 
@@ -171,10 +175,13 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
             }
         });
 
+
         fullArrayList = CONST.getRingtoneJC(this);
+        Log.i(TAG, "onCreate: " + fullArrayList.size());
 
         for (int pos = 0; pos < fullArrayList.size(); pos++) {
             singleArrayList.add(fullArrayList.get(pos));
+
         }
 
 
@@ -340,7 +347,6 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
         dialogRecyclerView.notifyDataSetChanged();
         jcplayerView.createNotification(R.drawable.music);
     }
-
 
     @Override
     public void onStopped(JcStatus jcStatus) {

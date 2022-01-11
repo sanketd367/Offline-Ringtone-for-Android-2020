@@ -6,6 +6,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.invariablestudio.nokiaringtone.Utils.DataBasHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,11 +25,14 @@ public class App extends Application {
         });
 
 
-
         List<String> testDeviceIds = Arrays.asList("64C874AC502AEF7D13FDF1AB2F5283C3");
         RequestConfiguration configuration =
                 new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
         MobileAds.setRequestConfiguration(configuration);
+
+        new DataBasHelper(getApplicationContext());
+
+
 
     }
 }

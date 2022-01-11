@@ -2,8 +2,10 @@ package com.invariablestudio.nokiaringtone;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.jean.jcplayer.model.JcAudio;
+import com.invariablestudio.nokiaringtone.Utils.DataBasHelper;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -161,28 +163,24 @@ public class CONST {
     public static ArrayList<JcAudio> getRingtoneJC(Context context) {
 
         ArrayList<JcAudio> jcAudios = new ArrayList<>();
+        ArrayList<GSRingtoneNEW> ringtone = new ArrayList<>();
+        ringtone = new DataBasHelper(context).getAudio();
+       // Field[] fields = R.raw.class.getFields();
 
+        for (int i = 0; i < ringtone.size(); i++) {
 
-        Field[] fields = R.raw.class.getFields();
-
-
-        for (int i = 0; i < fields.length; i++) {
-
-
-            String resid = fields[i].getName();
+            String resid = ringtone.get(i).AUDIO_MYNAME;
             try {
                 Class res = R.raw.class;
                 Field field = res.getField(resid);
                 int rawId = field.getInt(null);
 
-                jcAudios.add(JcAudio.createFromRaw(fields[i].getName(), rawId));
+                jcAudios.add(JcAudio.createFromRaw(ringtone.get(i).AUDIO_MYNAME, rawId));
             } catch (Exception e) {
                 Log.e("MyTag", "Failure to get drawable id.", e);
             }
 
-
         }
-
 
   /*      for (int i = 0; i < rawarray.length; i++) {
 
@@ -194,29 +192,98 @@ public class CONST {
         return jcAudios;
     }
 
+   /* public static void getRings(Context context){
+        Field[] fields = R.raw.class.getFields();
 
-    public static List<GSRingtone> getRingtone(Context context) {
+        for (int i = 0; i < fields.length; i++) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(fields[i].getName());
+            stringBuilder.append(".mp3");
+            if (!new DataBasHelper(context).isTableExists()) {
+                new DataBasHelper(context).InsertAudioData(fields[i].getName(), stringBuilder.toString(), fields[i].getName(), "false", 0);
+            }
+        }
+    }*/
+
+    public static void addRingtone(Context context) {
+        Field[] fields = R.raw.class.getFields();
+        if (new DataBasHelper(context).isTableExists()) {
+            if (new DataBasHelper(context).getAudio().size() == 0) {
+                for (int i = 0; i < fields.length; i++) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append(fields[i].getName());
+                    stringBuilder.append(".mp3");
+                    new DataBasHelper(context).InsertAudioData(fields[i].getName(), stringBuilder.toString(), fields[i].getName(), "0", 0);
+
+                }
+            }
+
+        } else {
+            for (int i = 0; i < fields.length; i++) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(fields[i].getName());
+                stringBuilder.append(".mp3");
+                new DataBasHelper(context).InsertAudioData(fields[i].getName(), stringBuilder.toString(), fields[i].getName(), "false", 0);
+
+            }
+        }
+
+
+ /*   public static List<GSRingtoneNEW> getRingtone(Context context) {
 
         List<GSRingtone> arrayList = new ArrayList();
+        List<GSRingtone> arrayList2 = new ArrayList();
+        List<RELRingtone> relRingtoneList = new ArrayList();
+        relRingtoneList = new DataBasHelper(context).getAllRel();
 
         Field[] fields = R.raw.class.getFields();
 
         for (int i = 0; i < fields.length; i++) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(fields[i].getName());
-            stringBuilder.append(",");
-            arrayList.add(new GSRingtone(stringBuilder.toString(), fields[i].getName(), fields[i].getName()));
+            stringBuilder.append(".mp3");
+            //arrayList.add(new GSRingtoneNEW(stringBuilder.toString(), fields[i].getName(), fields[i].getName()));
+
+            new DataBasHelper(context).InsertAudioData(fields[i].getName(),stringBuilder.toString(),fields[i].getName(),"false",0);
+
+
         }
 
-        /*for (int i = 0; i < fields.length; i++) {
+
+
+     */
+    /*   for (int i = 0; i < fields.length; i++) {
+            for (int j = 0; j < relRingtoneList.size(); j++) {
+
+                if (fields[i].getName().equals(relRingtoneList.get(j).REL_NAME)) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append(fields[i].getName());
+                    stringBuilder.append(".mp3");
+                    arrayList.add(new GSRingtone(stringBuilder.toString(), fields[i].getName(), fields[i].getName()));
+
+                }
+
+            }
+
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(fields[i].getName());
-            stringBuilder.append(",");
+            stringBuilder.append(".mp3");
+            arrayList2.add(new GSRingtone(stringBuilder.toString(), fields[i].getName(), fields[i].getName()));
+        }
+        arrayList.addAll(arrayList2);*/
+        /*
+
+         */
+    /*for (int i = 0; i < fields.length; i++) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(fields[i].getName());
+            stringBuilder.append(".mp3");
             arrayList.add(new GSRingtone(stringBuilder.toString(), fields[i].getName(), songnamearray[i]));
         }*/
+    /*
 
+        return new DataBasHelper(context).getAudio();
+    }*/
 
-        return arrayList;
     }
-
 }

@@ -11,15 +11,23 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.invariablestudio.nokiaringtone.GSRingtoneFAV;
+import com.invariablestudio.nokiaringtone.GSRingtoneNEW;
+import com.invariablestudio.nokiaringtone.RELRingtone;
+
+import java.util.ArrayList;
+
 public class DataBasHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "RingTone.db";
-    public static final String FAV_TABLE = "fav_table";
-    public static final String ID = "id";
-    public static final String SHOWFILENAME = "showFileName";
-    public static final String RAWFILENAME = "rawFileName";
-    public static final String MYNAME = "myName";
 
+    public static final String AUDIO_TABLE = "audio_table";
+    public static final String AUDIO_ID = "audio_id";
+    public static final String AUDIO_RAWFILENAME = "audio_rawfilename";
+    public static final String AUDIO_SHOWFILENAME = "audio_showfilename";
+    public static final String AUDIO_MYNAME = "audio_myname";
+    public static final String AUDIO_FAVOURITE = "audio_favourite";
+    public static final String AUDIO_RELCOUNT = "audio_relcount";
 
     public DataBasHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -27,55 +35,105 @@ public class DataBasHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + FAV_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + SHOWFILENAME + " TEXT," + RAWFILENAME + " TEXT," + MYNAME + " TEXT )");
+        db.execSQL("create table " + AUDIO_TABLE + "(" + AUDIO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + AUDIO_RAWFILENAME + " TEXT," + AUDIO_SHOWFILENAME + " TEXT," + AUDIO_MYNAME + " TEXT," + AUDIO_FAVOURITE + " TEXT," + AUDIO_RELCOUNT + " INTEGER )");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + FAV_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + AUDIO_TABLE);
         onCreate(db);
     }
 
-    public boolean InsertData(String showFileName, String rawFileName, String myName) {
+    public boolean InsertAudioData(String rawFileName, String showFileName, String myName, String favourite, int count) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SHOWFILENAME, showFileName);
-        contentValues.put(RAWFILENAME, rawFileName);
-        contentValues.put(MYNAME, myName);
-        long result = db.insert(FAV_TABLE, null, contentValues);
-        Log.e("database", "insert_data" + result);
-
+        contentValues.put(AUDIO_RAWFILENAME, rawFileName);
+        contentValues.put(AUDIO_SHOWFILENAME, showFileName);
+        contentValues.put(AUDIO_MYNAME, myName);
+        contentValues.put(AUDIO_FAVOURITE, favourite);
+        contentValues.put(AUDIO_RELCOUNT, count);
+        long result = db.insertWithOnConflict(AUDIO_TABLE, null, contentValues, SQLiteDatabase.CONFLICT_NONE);
+        //  Log.e("database", "insert_data" + result);
+        db.close();
         if (result == -1)
             return false;
         else
             return true;
     }
 
-    public Cursor retriveData() {
+
+    public void UpdateRel(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from " + FAV_TABLE, null);
-        Log.d(TAG, "retriveData: " + res);
-        return res;
+        db.execSQL("UPDATE " + AUDIO_TABLE + " SET " + AUDIO_RELCOUNT + "=" + AUDIO_RELCOUNT + "+1" + " WHERE " + AUDIO_MYNAME + "=?", new String[]{String.valueOf(name)});
     }
 
-    public int deleteData(String myName) {
-        SQLiteDatabase database = getWritableDatabase();
-        int a = database.delete(FAV_TABLE, MYNAME + " = ?", new String[]{myName});
-        Log.e(TAG, "deleteData: " + a);
-        database.close();
-        return a;
+    public void UpdateFav(int name, String action) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE " + AUDIO_TABLE + " SET " + AUDIO_FAVOURITE + "=" + action + " WHERE " + AUDIO_ID + "=?", new String[]{String.valueOf(name)});
     }
 
-    public boolean isAdded(String myname) {
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        // String query = "SELECT * FROM " + FAV_TABLE + " WHERE " + MYNAME + " = " + myname;
-        String query1 = "SELECT " + MYNAME + " FROM " + FAV_TABLE + " WHERE " + MYNAME + "='" + myname + "'";
-        Cursor cursor = sqLiteDatabase.rawQuery(query1, null);
-        if (cursor.getCount() > 0) {
+
+    public ArrayList<GSRingtoneFAV> retriveData() {
+        ArrayList<GSRingtoneFAV> array_list = new ArrayList<GSRingtoneFAV>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from audio_table WHERE audio_favourite = 1", null);
+        //Log.i(TAG, "retriveData: "+res.getCount());
+
+        while (res.moveToNext()) {
+
+            // Log.i(TAG, "retriveData: "+res.getInt(res.getColumnIndex("audio_id")));
+            array_list.add(new GSRingtoneFAV(res.getInt(res.getColumnIndex(AUDIO_ID)),
+                    res.getString(res.getColumnIndex(AUDIO_RAWFILENAME)),
+                    res.getString(res.getColumnIndex(AUDIO_SHOWFILENAME)),
+                    res.getString(res.getColumnIndex(AUDIO_MYNAME)),
+                    res.getString(res.getColumnIndex(AUDIO_FAVOURITE)),
+                    res.getInt(res.getColumnIndex(AUDIO_RELCOUNT))
+            ));
+
+        }
+        return array_list;
+    }
+
+    public ArrayList getAudio() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<GSRingtoneNEW> array_list = new ArrayList<GSRingtoneNEW>();
+        Cursor res = db.rawQuery("select * from " + AUDIO_TABLE + " ORDER BY audio_relcount DESC", null);
+        res.moveToFirst();
+
+        while (res.isAfterLast() == false) {
+            array_list.add(new GSRingtoneNEW(res.getInt(res.getColumnIndex(AUDIO_ID)),
+                    res.getString(res.getColumnIndex(AUDIO_RAWFILENAME)),
+                    res.getString(res.getColumnIndex(AUDIO_SHOWFILENAME)),
+                    res.getString(res.getColumnIndex(AUDIO_MYNAME)),
+                    res.getString(res.getColumnIndex(AUDIO_FAVOURITE)),
+                    res.getInt(res.getColumnIndex(AUDIO_RELCOUNT))
+            ));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public boolean getFav(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select audio_favourite from " + AUDIO_TABLE + " WHERE audio_id = " + id, null);
+        res.moveToFirst();
+        Log.i(TAG, "getFav: " + res.getString(res.getColumnIndex(AUDIO_FAVOURITE)));
+        if (res.getString(res.getColumnIndex(AUDIO_FAVOURITE)).equals("1")) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public boolean isTableExists() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name='" + AUDIO_TABLE + "'";
+        Cursor mCursor = db.rawQuery(sql, null);
+        if (mCursor.getCount() > 0) {
+            return true;
+        }
+        mCursor.close();
+        return false;
     }
 }

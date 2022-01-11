@@ -41,10 +41,10 @@ import java.util.List;
 public class FavouriteActivity extends AppCompatActivity implements JcPlayerManagerListener {
     private static final String TAG = "dayay-->";
     public RecyclerView recyclerview;
-    List<GSRingtone> gsRingtones;
+    List<GSRingtoneFAV> gsRingtones;
     private Cursor cursor;
     JcPlayerView jcplayerView;
-   // ImageView bg_shadow_IV;
+    // ImageView bg_shadow_IV;
     public static AdapterFavourite dialogRecyclerView;
     static FavouriteActivity activityMainThis;
     public static int currentPlayItem = -1;
@@ -61,12 +61,13 @@ public class FavouriteActivity extends AppCompatActivity implements JcPlayerMana
         activityMainThis = this;
         gsRingtones = new ArrayList<>();
         recyclerview = (RecyclerView) findViewById(R.id.recyclerView);
-       // this.bg_shadow_IV = findViewById(R.id.bg_shadow_IV);
+        // this.bg_shadow_IV = findViewById(R.id.bg_shadow_IV);
         this.tv_nodata = (TextView) findViewById(R.id.tv_nodata);
         this.rlPlayer = (RelativeLayout) findViewById(R.id.rl_player);
 
         gsRingtones.clear();
-        cursor = new DataBasHelper(getApplicationContext()).retriveData();
+        gsRingtones.addAll(new DataBasHelper(getApplicationContext()).retriveData());
+       /* cursor = new DataBasHelper(getApplicationContext()).getAudio();
         cursor.moveToFirst();
         for (int i = 0; i < cursor.getCount(); i++) {
             String id = cursor.getString(0);
@@ -77,13 +78,13 @@ public class FavouriteActivity extends AppCompatActivity implements JcPlayerMana
             gsRingtones.add(new GSRingtone(rowName, showName, myName));
             cursor.moveToNext();
 
-        }
+        }*/
         if (gsRingtones.size() > 0) {
             tv_nodata.setVisibility(View.GONE);
             rlPlayer.setVisibility(View.VISIBLE);
             LinearLayoutManager layoutManager = new LinearLayoutManager(FavouriteActivity.this, RecyclerView.VERTICAL, false);
             recyclerview.setLayoutManager(layoutManager);
-            dialogRecyclerView = new AdapterFavourite(FavouriteActivity.this, gsRingtones,tv_nodata,rlPlayer);
+            dialogRecyclerView = new AdapterFavourite(FavouriteActivity.this, gsRingtones, tv_nodata, rlPlayer);
             recyclerview.setAdapter(dialogRecyclerView);
 
             dialogRecyclerView.setOnItemClickListener(new AdapterFavourite.OnItemClickListener() {
@@ -93,7 +94,7 @@ public class FavouriteActivity extends AppCompatActivity implements JcPlayerMana
                     currentPlayItem = position;
                     jcplayerView.playAudio(jcplayerView.getMyPlaylist().get(currentPlayItem));
                     int height = jcplayerView.getLayoutParams().height;
-               //     bg_shadow_IV.getLayoutParams().height = height;
+                    //     bg_shadow_IV.getLayoutParams().height = height;
 
                 }
 
@@ -108,12 +109,11 @@ public class FavouriteActivity extends AppCompatActivity implements JcPlayerMana
 
             for (int i = 0; i < gsRingtones.size(); i++) {
                 for (int j = 0; j < fullArrayList.size(); j++) {
-                    if (fullArrayList.get(j).getTitle().equals(gsRingtones.get(i).MY_NAME)) {
+                    if (fullArrayList.get(j).getTitle().equals(gsRingtones.get(i).AUDIO_MYNAME)) {
                         singleArrayList.add(fullArrayList.get(j));
                     }
                 }
             }
-
 
             jcplayerView = (JcPlayerView) findViewById(R.id.jcplayerView);
 

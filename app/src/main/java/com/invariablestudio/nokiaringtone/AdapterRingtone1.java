@@ -30,14 +30,10 @@ import java.util.List;
 import es.claucookie.miniequalizerlibrary.EqualizerView;
 
 public class AdapterRingtone1 extends RecyclerView.Adapter<AdapterRingtone1.viewHolder> {
-    public static List<GSRingtone> data;
+    public static List<GSRingtoneNEW> data;
     public static int currentpos = 0;
-    // public static GSRingtone gSRingtone;
     private static OnItemClickListener mListener;
     String TAG = "AdapterRingtone1";
-
-    List<GSRingtone> fullArrayList = new ArrayList<>();
-    //public static String ringtone;
     private Context _context;
     private Activity activity;
     String type = "list";
@@ -51,13 +47,12 @@ public class AdapterRingtone1 extends RecyclerView.Adapter<AdapterRingtone1.view
         mListener = listener;
     }
 
-    AdapterRingtone1(Activity activity, List<GSRingtone> list) {
+    AdapterRingtone1(Activity activity, List<GSRingtoneNEW> list) {
         this._context = activity.getBaseContext();
         this.data = list;
         this.activity = activity;
-        fullArrayList = list;
-    }
 
+    }
 
     @NonNull
     @Override
@@ -69,22 +64,21 @@ public class AdapterRingtone1 extends RecyclerView.Adapter<AdapterRingtone1.view
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
-        GSRingtone gsRingtone = data.get(position);
-        if (new DataBasHelper(_context).retriveData().getCount() != 0) {
-            if (new DataBasHelper(_context).isAdded(gsRingtone.MY_NAME)) {
-                holder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
-            } else {
-                holder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24));
-            }
-        }
+        GSRingtoneNEW gsRingtone = data.get(holder.getAbsoluteAdapterPosition());
 
-        holder.header_title.setText(gsRingtone.MY_NAME);
+
+        holder.header_title.setText(gsRingtone.AUDIO_MYNAME);
 
         holder.header_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    //listViewHolder.equalizer.animateBars(); // Whenever you want to tart the animation
+               /*     if(new DataBasHelper(_context).isRel(gsRingtone.MY_NAME)){
+                        new DataBasHelper(_context).UpdateRel(gsRingtone.MY_NAME);
+                    }else{
+                        new DataBasHelper(_context).InsertRel(gsRingtone.MY_NAME,"0");*/
+                    new DataBasHelper(_context).UpdateRel(gsRingtone.AUDIO_MYNAME);
+                    /* }*/
                     mListener.onItemClick(position);
                 }
             }
@@ -105,21 +99,29 @@ public class AdapterRingtone1 extends RecyclerView.Adapter<AdapterRingtone1.view
         holder.ivFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (new DataBasHelper(_context).isAdded(gsRingtone.MY_NAME)) {
-                    holder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24));
-                    new DataBasHelper(_context).deleteData(gsRingtone.MY_NAME);
+                if (new DataBasHelper(_context).getFav(gsRingtone.AUDIO_ID)) {
+                    new DataBasHelper(_context).UpdateFav(gsRingtone.AUDIO_ID, "false");
                     Toast.makeText(_context, "Remove to Favourite", Toast.LENGTH_SHORT).show();
+                    holder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24));
 
+                    //      data.set(holder.getAbsoluteAdapterPosition(),new GSRingtoneNEW(gsRingtone.AUDIO_ID,gsRingtone.AUDIO_RAWFILENAME, gsRingtone.AUDIO_SHOWFILENAME, gsRingtone.AUDIO_MYNAME, "0", gsRingtone.AUDIO_RELCOUNT));
                 } else {
+                    new DataBasHelper(_context).UpdateFav(gsRingtone.AUDIO_ID, "true");
                     holder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
-                    new DataBasHelper(_context).InsertData(gsRingtone.SHOW_FILENAME, gsRingtone.RAW_FILE_NAME, gsRingtone.MY_NAME);
                     Toast.makeText(_context, "Added to Favourite", Toast.LENGTH_SHORT).show();
                     notifyDataSetChanged();
+                  //  data.set(holder.getAbsoluteAdapterPosition(),new GSRingtoneNEW(gsRingtone.AUDIO_ID,gsRingtone.AUDIO_RAWFILENAME, gsRingtone.AUDIO_SHOWFILENAME, gsRingtone.AUDIO_MYNAME, "1", gsRingtone.AUDIO_RELCOUNT));
 
                 }
+
             }
         });
 
+        if (new DataBasHelper(_context).getFav(gsRingtone.AUDIO_ID)) {
+            holder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
+        } else {
+            holder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24));
+        }
         holder.relViewPlayButton.setOnClickListener(anonymousClass1);
         holder.btn_play.setOnClickListener(anonymousClass1);
         holder.btn_next.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +129,8 @@ public class AdapterRingtone1 extends RecyclerView.Adapter<AdapterRingtone1.view
             public void onClick(View view) {
 
                 CONST.POS = position;
-                CONST.SELECTED_RAW_FILE_NAME = fullArrayList.get(position).RAW_FILE_NAME;
-                CONST.SELECTED_SHOW_FILE_NAME = fullArrayList.get(position).SHOW_FILENAME;
+                CONST.SELECTED_RAW_FILE_NAME = data.get(position).AUDIO_RAWFILENAME;
+                CONST.SELECTED_SHOW_FILE_NAME = data.get(position).AUDIO_SHOWFILENAME;
                 Log.e(TAG, "onClick: position: " + position);
                 Log.e(TAG, "onClick: name: " + CONST.SELECTED_RAW_FILE_NAME);
 

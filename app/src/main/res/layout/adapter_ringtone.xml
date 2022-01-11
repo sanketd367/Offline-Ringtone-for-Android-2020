@@ -70,22 +70,23 @@
             android:layout_marginBottom="@dimen/adapter_ringtone_equalizer_margin"
             android:layout_height="wrap_content">
 
-            <es.claucookie.miniequalizerlibrary.EqualizerView
-                android:id="@+id/equalizer_view"
-                android:layout_width="@dimen/adapter_ringtone_equalizer_width"
-                android:layout_height="fill_parent"
-                android:layout_alignParentTop="true"
-                app:animDuration="2500"
-                app:foregroundColor="@color/white"
-                android:visibility="gone" />
+        <es.claucookie.miniequalizerlibrary.EqualizerView
+            android:id="@+id/equalizer_view"
+            android:layout_width="@dimen/adapter_ringtone_equalizer_width"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            app:animDuration="2500"
+            app:foregroundColor="@color/white"
+            android:visibility="gone" />
 
-            <ImageView
-                android:id="@+id/equalizer_IV"
-                android:layout_width="@dimen/adapter_ringtone_equalizer_width"
-                android:layout_height="fill_parent"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/ic_music_equalizer" />
+        <ImageView
+            android:id="@+id/equalizer_IV"
+            android:layout_width="@dimen/adapter_ringtone_equalizer_width"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_music_equalizer" />
         </FrameLayout>
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_next"
             android:layout_width="@dimen/adapter_ringtone_main_layout_height"

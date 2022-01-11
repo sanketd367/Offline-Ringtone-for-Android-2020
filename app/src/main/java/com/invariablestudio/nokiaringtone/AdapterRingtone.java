@@ -45,13 +45,15 @@ public class AdapterRingtone extends Adapter<ViewHolder> {
     List<GSRingtone> fullArrayList = new ArrayList<>();
     //public static String ringtone;
     private Context _context;
+
     private Activity activity;
 
     AdapterRingtone(Activity activity, List<GSRingtone> list) {
         this._context = activity.getBaseContext();
         this.data = list;
         this.activity = activity;
-        fullArrayList = CONST.getRingtone(activity);
+       // fullArrayList = CONST.getRingtone(activity);
+
     }
 
     public void updateAdapter(int currentpos) {
@@ -85,13 +87,13 @@ public class AdapterRingtone extends Adapter<ViewHolder> {
 
         gSRingtone = (GSRingtone) this.data.get(i);
         listViewHolder = (ListViewHolder) viewHolder;
-        if (new DataBasHelper(_context).retriveData().getCount()!=0) {
+       /* if (new DataBasHelper(_context).retriveData().getCount()!=0) {
             if (new DataBasHelper(_context).isAdded(gSRingtone.MY_NAME)) {
                 listViewHolder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
             } else {
                 listViewHolder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24));
             }
-        }
+        }*/
 
         listViewHolder.header_title.setText(gSRingtone.MY_NAME);
         /*listViewHolder.equalizer.animateBars();
@@ -141,24 +143,6 @@ public class AdapterRingtone extends Adapter<ViewHolder> {
 
             }
         };
-
-        listViewHolder.ivFav.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (new DataBasHelper(_context).isAdded(gSRingtone.MY_NAME)) {
-                    listViewHolder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24));
-                    new DataBasHelper(_context).deleteData(gSRingtone.MY_NAME);
-                    Toast.makeText(_context, "Remove to Favourite", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    listViewHolder.ivFav.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
-                    new DataBasHelper(_context).InsertData(gSRingtone.SHOW_FILENAME,gSRingtone.RAW_FILE_NAME,gSRingtone.MY_NAME);
-                    Toast.makeText(_context, "Added to Favourite", Toast.LENGTH_SHORT).show();
-
-                }
-                Toast.makeText(_context, ""+fullArrayList.get(i).MY_NAME, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         listViewHolder.relViewPlayButton.setOnClickListener(anonymousClass1);
         listViewHolder.btn_play.setOnClickListener(anonymousClass1);

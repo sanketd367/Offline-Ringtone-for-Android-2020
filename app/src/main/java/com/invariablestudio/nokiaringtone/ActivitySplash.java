@@ -17,6 +17,8 @@ public class ActivitySplash extends Activity {
 
             @Override
             public void run() {
+
+                CONST.addRingtone(getApplicationContext());
                 // This method will be executed once the timer is over
                 Intent i = new Intent(ActivitySplash.this, ActivityHome.class);
                 startActivity(i);

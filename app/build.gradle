@@ -46,4 +46,8 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.github.jeancsanchez:JcPlayer:2.7.0'
     implementation 'com.jcminarro:RoundKornerLayouts:0.4.0'
+
+    // Lifecycle components
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 }
