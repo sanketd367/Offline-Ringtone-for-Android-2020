@@ -30,7 +30,7 @@ public class DataBasHelper extends SQLiteOpenHelper {
     public static final String AUDIO_RELCOUNT = "audio_relcount";
 
     public DataBasHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
     @Override

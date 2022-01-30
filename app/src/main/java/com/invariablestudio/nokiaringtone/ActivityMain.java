@@ -48,7 +48,6 @@ public class ActivityMain extends AppCompatActivity implements JcPlayerManagerLi
     JcPlayerView jcplayerView;
     ImageView bg_shadow_IV;
 
-
     ArrayList<JcAudio> fullArrayList = new ArrayList();
     ArrayList<JcAudio> singleArrayList = new ArrayList();
 

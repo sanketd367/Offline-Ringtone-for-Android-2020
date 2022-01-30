@@ -6,10 +6,17 @@
     <string name="account_url">https://play.google.com/store/apps/developer?id=ACC+Name</string>
 
 
-    <string name="Ads_id">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="interstitialAdId">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="bannerAdId">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="nativeAdId">ca-app-pub-3940256099942544/2247696110</string>
+    //Test
+<!--    <string name="Ads_id">ca-app-pub-3940256099942544~3347511713</string>-->
+<!--    <string name="interstitialAdId">ca-app-pub-3940256099942544/1033173712</string>-->
+<!--    <string name="bannerAdId">ca-app-pub-3940256099942544/6300978111</string>-->
+<!--    <string name="nativeAdId">ca-app-pub-3940256099942544/2247696110</string>-->
+
+    //Live
+    <string name="Ads_id">ca-app-pub-5379977790220651~4045803638</string>
+    <string name="interstitialAdId">ca-app-pub-5379977790220651/3662660256</string>
+    <string name="bannerAdId">ca-app-pub-5379977790220651/8804016738</string>
+    <string name="nativeAdId">ca-app-pub-5379977790220651/8531843555</string>
 
 
     <string name="disclaimer_msg">"All this app ringtone are for entertainment purpose only. All ringtone are collected from the Internet. If you believe in good faith that any material provided through the service infringes upon your copyright then please feel free to contact us, So that we can take action.
