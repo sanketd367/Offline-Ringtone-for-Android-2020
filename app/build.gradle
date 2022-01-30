@@ -6,8 +6,8 @@ android {
         applicationId "com.invariablestudio.nokiaringtone"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 5.0.0
-        versionName "5.0.0"
+        versionCode 5.0
+        versionName "5.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         multiDexEnabled true
